@@ -6,9 +6,17 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(OpenCV REQUIRED)
 message(STATUS "Found OpenCV v${OpenCV_VERSION}")
 
+add_library(resizer STATIC 
+	src/resizer.cc
+)
+add_library(cxxopts INTERFACE)
+add_library(cxxopts::cxxopts ALIAS cxxopts)
+
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(include)
+include_directories(/opt/cxxopts/include)
 
-add_executable(resizer src/targets/resizer.cc)
+add_executable(rr src/targets/rr.cc)
 
-target_link_libraries(resizer ${OpenCV_LIBS})
+target_link_libraries(resizer PUBLIC ${OpenCV_LIBS})
+target_link_libraries(rr PRIVATE resizer)

@@ -3,3 +3,6 @@
 
 # Build output
 /build
+
+# Sample images
+/assets
