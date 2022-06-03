@@ -1,0 +1,22 @@
+{
+   "tasks": [
+      {
+         "label": "Build project",
+         "type": "shell",
+         "command": "cmake . -B build/ && cmake --build build/",
+         "args": [],
+			"options": {
+				"cwd": "${cwd}"
+			},
+         "problemMatcher": [
+            "$gcc"
+         ],
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         },
+         "detail": "Build task."
+      }
+   ],
+   "version": "2.0.0"
+}
