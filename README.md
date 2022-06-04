@@ -6,4 +6,4 @@ It's a tool that takes in a folder and resizes all of the images inside it to a 
 It's very limited cause it's made to fit my workflow so I don't recommend using it right now. You can still have a look around if you wish... 😉
 
 ## Prerequisites
-The tool uses `OpenCV` for image processing and `cxxopts` for argument parsing, so make sure to have those installed on your system before using it.
+The tool uses `OpenCV` for image processing, so make sure to have that installed on your system before using it.
