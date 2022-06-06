@@ -1,0 +1,3 @@
+A small image resizing utility.
+It's a tool that takes in a folder and resizes all of the images inside it to a resolution of `1920x1280` pixels while preserving the orientation.
+It's very limited cause it's made to fit my workflow so I don't recommend using it right now.
