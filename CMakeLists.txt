@@ -25,7 +25,6 @@ set(OpenCV_LIB_DIR "${OpenCV_DIR}/lib" CACHE PATH "Directory containing static O
 set(OpenCV_BIN_DIR "${OpenCV_DIR}/bin" CACHE PATH "Directory containing dynamic OpenCV libraries")
 link_directories(${OpenCV_LIB_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})
-message(STATUS "OpenCV include directories: ${OpenCV_DIR}")
 target_link_libraries(resizer PUBLIC ${OpenCV_LIBS})
 
 # cxxopts - Lightweight library for parsing options - https://github.com/jarro2783/cxxopts
