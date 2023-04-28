@@ -1,6 +1,3 @@
-# Editor tasks and configurations
-/.vscode
-
 # Build output
 /build
 

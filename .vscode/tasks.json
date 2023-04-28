@@ -1,0 +1,58 @@
+{
+   "tasks": [
+      {
+         "label": "Clean",
+         "type": "shell",
+         "command": "rm -rf build/",
+         "args": [],
+			"options": {
+				"cwd": "${cwd}"
+			},
+         "problemMatcher": [
+            "$gcc"
+         ],
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         },
+         "detail": "Clean task."
+      },
+      {
+         "label": "Build",
+         "type": "shell",
+         "command": "cmake . -B build/ && cmake --build build/",
+         "args": [],
+			"options": {
+				"cwd": "${cwd}"
+			},
+         "problemMatcher": [
+            "$gcc"
+         ],
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         },
+         "detail": "Build task.",
+         "dependsOn": ["Clean"]
+      },
+      {
+         "label": "Package",
+         "type": "shell",
+         "command": "cd build/ && cpack -C CPackConfig.cmake && cpack -C CPackSourceConfig.cmake",
+         "args": [],
+			"options": {
+				"cwd": "${cwd}"
+			},
+         "problemMatcher": [
+            "$gcc"
+         ],
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         },
+         "detail": "Build task.",
+         "dependsOn": ["Build"]
+      }
+   ],
+   "version": "2.0.0"
+}
