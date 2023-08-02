@@ -25,12 +25,24 @@ set(OpenCV_LIB_DIR "${OpenCV_DIR}/lib" CACHE PATH "Directory containing static O
 set(OpenCV_BIN_DIR "${OpenCV_DIR}/bin" CACHE PATH "Directory containing dynamic OpenCV libraries")
 link_directories(${OpenCV_LIB_DIR})
 include_directories(${OpenCV_INCLUDE_DIRS})
-target_link_libraries(resizer PUBLIC ${OpenCV_LIBS})
+target_link_libraries(${TARGET_NAME} PUBLIC ${OpenCV_LIBS})
 
 # cxxopts - Lightweight library for parsing options - https://github.com/jarro2783/cxxopts
 add_subdirectory(extern/cxxopts)
 target_include_directories(${TARGET_NAME} PUBLIC cxxopts)
 target_link_libraries(${TARGET_NAME} PUBLIC cxxopts)
+
+# uninstall target
+if(NOT TARGET uninstall)
+  configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/CMake_Uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/CMake_Uninstall.cmake"
+    IMMEDIATE @ONLY)
+
+  add_custom_target(uninstall
+    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/CMake_Uninstall.cmake)
+endif()
+# end uninstall target
 
 # CPack stuff
 set(CPACK_GENERATOR "RPM")
@@ -56,7 +68,6 @@ set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
 set(CPACK_RPM_CHANGELOG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/release/CHANGELOG.txt")
 file(READ ${CPACK_RPM_CHANGELOG_FILE} CPACK_RPM_SPEC_CHANGELOG)
 
-# install(DIRECTORY "${OpenCV_BIN_DIR}/" DESTINATION bin)
 install(TARGETS rr RUNTIME DESTINATION bin)
 
 include(CPack)
